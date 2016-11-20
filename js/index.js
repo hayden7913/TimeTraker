@@ -1,4 +1,5 @@
 
+
 var proj1= "Email Error";
 var categories=["coding","solar"];
 var weeklyCategories=["Wcoding","Wsolar"];
@@ -16,15 +17,80 @@ goalVisual("set");
 hideVariable.hide();
 tHistory.append();
 
+//Implement Timer
+const countdown = start => {
+	const cd = setInterval(() => {
+		console.log(start)
+		if (start === 0) {
+			console.log('Finished!');
+			clearInterval(cd);
+		}
+		start--;
+	}, 1000);
+} 
+
+const convert = seconds => {
+	const timeObj = {
+		min: Math.floor(seconds / 60 + " "),
+		sec: seconds % 60 + " "
+	}
+	return(timeObj);
+}
+
+const reduceTime = time => {
+	let seconds = time * 60; 
+	const cd = setInterval(() => {
+		console.log(seconds)
+		if (seconds <= 0) {
+			console.log('Finished!');
+			//$(".js-clock").html("Finsished!");
+			clearInterval(cd);
+			var action = prompt("Type 's' to log another pomodoro");
+			if (action === "s") {
+
+				reduceTime (.05);
+			}
+			console.log(action);
+		}
+		seconds--;
+		if (seconds > 0) {
+			renderTime(convert(seconds));	
+		} 
+	}, 1000);
+} 
+
+const renderTime = time => {
+	$(".js-min").text(time.min);
+	$(".js-sec").text(time.sec);
+}
+console.log("hello");
+const initHandleBtn25 = el => {
+	("js-btn25").on("click", e => {
+		e.preventDefault();
+		//let time = el.input.val();
+		console.log("hello")
+		let time = 24.5; 
+		reduceTime(time);
+		uptime("coding",25)
+		this.reset;
+	})
+}
+
+const main = () => {
+	const el = {
+		form: $("form"),
+		input: $(".js-timeInput"),
+		btn25: $("#btn25")
+	}
+
+	initHandleBtn25(el);
+	//For Testing
+	}
+
+$(main());
+
 //Render some stuff
 
-
-
-/*
-console.log(categories);
-localStorage[categories[2]]=3;
-console.log(localStorage[categories[2]]);
-*/
 function appendCategories(newCat){
 	categories.push(newCat);
 	weeklyCategories.push("W"+newCat);
