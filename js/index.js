@@ -14,8 +14,8 @@ appendCategories("variable");
 displayAll(categories);
 displayAll(weeklyCategories);
 goalVisual("set");
-hideVariable.hide();
-tHistory.append();
+//hideVariable.hide();
+//tHistory.append();
 
 //Implement Timer
 const countdown = start => {
@@ -40,15 +40,12 @@ const convert = seconds => {
 const reduceTime = time => {
 	let seconds = time * 60; 
 	const cd = setInterval(() => {
-		console.log(seconds)
 		if (seconds <= 0) {
-			console.log('Finished!');
-			//$(".js-clock").html("Finsished!");
 			clearInterval(cd);
 			var action = prompt("Type 's' to log another pomodoro");
 			if (action === "s") {
-
-				reduceTime (.05);
+				upTime("coding", 25)
+				reduceTime (24.5);
 			}
 			console.log(action);
 		}
@@ -63,15 +60,14 @@ const renderTime = time => {
 	$(".js-min").text(time.min);
 	$(".js-sec").text(time.sec);
 }
-console.log("hello");
+
 const initHandleBtn25 = el => {
-	("js-btn25").on("click", e => {
+	el.btn25.on("click", e => {
 		e.preventDefault();
 		//let time = el.input.val();
-		console.log("hello")
 		let time = 24.5; 
 		reduceTime(time);
-		uptime("coding",25)
+		upTime("coding",25)
 		this.reset;
 	})
 }
@@ -184,7 +180,6 @@ function goalVisual(arg){
 		var progressOut="<b>"+progressCount+": "; 
 		var idNameTarget=cat.toString()+"Goals";
 		var idNameProgress=cat.toString()+"Progress";
-
 
 		progressOut=formatUnderTen(progressOut,today,weekly);
 		targetOut+=printX(goals[cat]);
