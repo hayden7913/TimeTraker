@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///C:/Users/Lula/Dropbox/JS/TestPage.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body>
+
+<style type="text/css">
+#element1 {display:inline-block;}  
+#goals {display:inline-block;}  
+#test {color:green;}
+p { margin:0;}
+input{width: 30px;}
+</style>
+
+
+
+<h1>Time Tracking</h1>
+
+Coding:
+<button onclick="upTime(&#39;coding&#39;,15)">15</button>
+<button onclick="upTime(&#39;coding&#39;,25)">25</button>
+<button onclick="upTime(&#39;coding&#39;,30)">30</button>
+<input id="codeBox" type="text"/>  
+
+
+<br><br>
+
+Solar Projects:
+<button onclick="upTime(&#39;solar&#39;,15)">15</button>
+<button onclick="upTime(&#39;solar&#39;,25)">25</button>
+<button onclick="upTime(&#39;solar&#39;,30)">30</button>
+<input id="solarBox" type="text"/>
+
+<br><br>
+
+Bed Bugs:
+<button onclick="upTime(&#39;bedBugs&#39;,15)">15</button>
+<button onclick="upTime(&#39;bedBugs&#39;,25)">25</button>
+<button onclick="upTime(&#39;bedBugs&#39;,30)">30</button>
+<input id="bedBugBox" type="text"/>
+
+<br><br>
+
+
+<h1>Today</h1>
+
+<div id="element1">  <b>Coding:</b></div> 
+<div id="element1">  <p id="coding"></p> </div> 
+<br><br>
+<div id="element1">  <b>Solar:</b> </div> 
+<div id="element1">  <p id="solar"></p> </div> 
+<br><br>
+<div id="element1">  <b>Bed Bugs:</b> </div> 
+<div id="element1">  <p id="bedBugs"></p> </div> 
+<br><br>
+
+<!-- Today Buttons -->
+	
+<div id="element1">
+	<button onclick="reset(categories)">Reset</button>
+	<button onclick="undo(categories)">Undo</button>
+	<button onclick="addTotals()">Add Totals</button>
+
+</div>
+
+
+
+<h1>This Week</h1>
+
+<div id="element1">  <b>Coding:</b></div> 
+<div id="element1">  <p id="Wcoding"></p> </div> 
+<br><br>
+<div id="element1">  <b>Solar:</b> </div> 
+<div id="element1">  <p id="Wsolar"></p> </div> 
+<br><br>
+<div id="element1">  <b>Bed Bugs:</b> </div> 
+<div id="element1">  <p id="WbedBugs"></p> </div> 
+<br><br>
+
+
+<!-- This Week Buttons -->
+
+<div id="element1">
+	<button onclick="reset(weeklyCategories)">Reset</button>
+	<button onclick="undo(weeklyCategories)">Undo</button>
+	
+</div>
+<br><br>
+
+
+<!-- Goal Visual -->
+
+
+<div id="goals">
+	<p><b>Coding:</b></p>
+	<p id="codingGoals"></p>
+	<p id="codingProgress"></p><br>
+
+	<p><b>Solar:</b></p>
+	<p id="solarGoals"></p>
+	<p id="solarProgress"></p><br>
+
+	<p><b>Bed Bugs:</b></p>
+	<p id="bedBugsGoals"></p>
+	<p id="bedBugsProgress"></p><br>
+</div>
+
+<br><br>
+
+<!-- Time Log -->
+
+<style type="text/css">
+p { margin:10;}
+</style>
+
+<h1>Log</h1>
+<div id="log"></div>
+
+<br><br>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="ButtonActions.js"></script>
+<script src="UndoFunctions.js"></script>
+<script src="TimeFunctions.js"></script>
+<script src="TextBoxes.js"></script>
+
+
+<script>
+var categories=["coding","solar","bedBugs"];
+var weeklyCategories=["Wcoding","Wsolar","WbedBugs"];
+var tempTime=0;
+var tempCat=" ";
+var tempValues={};
+var lastAction=" ";
+
+
+displayAll(categories);
+displayAll(weeklyCategories);
+goalVisual();
+
+
+
+function displayAll(array){
+
+	array.forEach(function(cat){
+		postToElement(cat,cat);
+
+	});
+}
+
+
+function storageAddition(newVar,time){
+	if(localStorage[newVar]){
+	localStorage[newVar]=Number(localStorage[newVar])+time;	
+	}
+	else{localStorage[newVar]=time;
+	}
+	goalVisual();
+}
+
+function postToElement(idName,cat){
+	document.getElementById(idName).innerHTML =(localStorage[cat]/60).toFixed(2);
+}
+
+
+/////////////Goal Visual///////////////
+
+
+
+function goalVisual(){
+	var goals={coding:20, solar:15, bedBugs:10}
+
+	categories.forEach(function(cat){
+		var targetOut="";
+		var progressOut="<font color=\"green\">";
+		var progressCount=Math.floor(Number(localStorage[cat])/60);
+		var idNameTarget=cat.toString()+"Goals";
+		var idNameProgress=cat.toString()+"Progress";
+
+		for(var i=0; i<=goals[cat]; i++){
+			targetOut+="X ";
+		}
+
+		for(var i=0; i<=progressCount; i++){
+			progressOut+="X ";
+		}
+		progressOut+="</font>";
+
+		document.getElementById(idNameTarget).innerHTML= targetOut;
+		document.getElementById(idNameProgress).innerHTML= progressOut;
+
+	});
+}
+
+
+
+</script>
+</body></html>
