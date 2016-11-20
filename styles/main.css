@@ -1,0 +1,24 @@
+#element1 {
+	display:inline-block;
+}  
+
+#goals {
+	display:inline-block;
+}
+
+#test {
+	color:green;
+}
+
+
+p { 
+	margin:0;
+}
+
+input {
+	width: 30px;
+}
+
+.row {
+	margin-top: 20px;
+}

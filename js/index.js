@@ -1,7 +1,4 @@
 
-
-
-<script>
 var proj1= "Email Error";
 var categories=["coding","solar"];
 var weeklyCategories=["Wcoding","Wsolar"];
@@ -167,5 +164,3 @@ $('input').on('keyup', function(e) {
             }
     });
 
-</script>
-</body></html>

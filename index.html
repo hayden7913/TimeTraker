@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles/main.css">
+	<title>TimeTracker</title>
+</head>
+
+<body>
+
+
+
+<div class="row">
+	<h1>Time Tracking</h1>
+	<span class="proj1"></span>
+	<button onclick="upTime(&#39;coding&#39;,15)">15</button>
+	<button onclick="upTime(&#39;coding&#39;,25)">25</button>
+	<button onclick="upTime(&#39;coding&#39;,30)">30</button>
+	<input id="codingBox" type="text"/>  	
+</div>
+
+<div class="row"> 
+	<button onclick="printDate(50,'Break')">Break</button>
+	<button onclick="clearLog()">Clear Log</button>
+	<button onclick="log.restore()">Restore Log</button>
+	<button onclick="tHistory.testFunction()">Test</button>
+</div>
+
+<div class="row">
+	<h1>Today</h1>
+	<div id="element1">
+		<span class="proj1"></span>
+		<span id="coding"></span>
+	</div> 
+	<div id="element1">  
+		 
+	</div> 		
+</div>
+
+<!-- Today Buttons -->
+	
+<div class="row">
+	<button onclick="reset(categories)">Reset</button>
+	<button onclick="undo(categories)">Undo</button>
+	<button onclick="addTotals()">Add Totals</button>
+</div>
+
+<div class="row">
+	<h1 onclick="hideVariable.hide()">This Week</h1>
+	<div>
+		<span class="proj1"></span>
+		<span id="Wcoding"></span> 
+	</div> 
+	  	 		
+<div class = "row">
+	<button onclick="reset(weeklyCategories)">Reset</button>
+	<button onclick="undo(weeklyCategories)">Undo</button>
+</div>
+
+</div>
+
+
+
+
+
+<!-- This Week Buttons -->
+
+
+
+<!-- Goal Visual -->
+
+
+<div>
+	<!-- <span>Hello:</span> -->
+	<p id="codingGoals"></p>
+	<p id="codingProgress"></p><br>
+
+	<!-- <p><b>Solar:</b></p> -->
+	<p id="solarGoals"></p>
+	<p id="solarProgress"></p><br>
+</div>
+
+
+
+<!-- Time Log -->
+
+
+
+<h1>Log</h1>
+
+<div id="log"></div>
+
+<br><br>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/index.js"></script>			
+<script src="js/ButtonActions.js"></script>
+<script src="js/UndoFunctions.js"></script>
+<script src="js/TimeFunctions.js"></script>
+
+</body>
+</html>
